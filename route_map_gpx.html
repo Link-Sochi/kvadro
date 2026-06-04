@@ -112,10 +112,8 @@ html,body{height:100%;font-family:'Segoe UI',Arial,sans-serif;background:var(--c
     <p>Карта Маршрута</p>
   </div>
   <div class="stats-row">
-    <div class="stat gold"><div class="stat-val">~10</div><div class="stat-lbl">км</div></div>
-    <div class="stat"><div class="stat-val">1–1.5</div><div class="stat-lbl">часа</div></div>
-    <div class="stat"><div class="stat-val">359</div><div class="stat-lbl">макс м</div></div>
-    <div class="stat"><div class="stat-val">225</div><div class="stat-lbl">набор м</div></div>
+    <div class="stat"><div class="stat-val">до 2-х часов</div><div class="stat-lbl">продолжительность</div></div>
+    <div class="stat"><div class="stat-val">359 м</div><div class="stat-lbl">макс высота</div></div>
   </div>
 </div>
 
@@ -185,11 +183,11 @@ const goAnim = L.polyline(goCoords, {
 
 // Return: solid base layer
 L.polyline(retCoords, {
-  color:'#0e7a60', weight:4, lineCap:'round', lineJoin:'round', opacity:0.55
+  color:'#d85c0a', weight:4, lineCap:'round', lineJoin:'round', opacity:0.55
 }).addTo(map);
 // Return: animated dash overlay
 const retAnim = L.polyline(retCoords, {
-  color:'#20d4a0', weight:4, lineCap:'round', lineJoin:'round',
+  color:'#ff8040', weight:4, lineCap:'round', lineJoin:'round',
   dashArray:'10 14', dashOffset:'0', opacity:0.90
 }).addTo(map);
 
@@ -250,11 +248,11 @@ L.marker([43.66237, 39.70911], { icon: photoIcon(IMG_VIEW2,'#1d6b2e','Лесна
     <span class="pop-badge green">~4.3 км от базы</span>`);
 
 // Peak
-L.marker([43.66556, 39.72765], { icon: photoIcon(IMG_PEAK,'#0e7a60','Вершина',50) })
+L.marker([43.66556, 39.72765], { icon: photoIcon(IMG_PEAK,'#d85c0a','Вершина',50) })
   .addTo(map)
   .bindPopup(`<div class="pop-title">⛰ Наивысшая точка</div>
     <div class="pop-sub">Высота: 359 м — максимум маршрута<br>Панорама на окрестности</div>
-    <span class="pop-badge teal">+ 225 м от старта</span>`);
+    `);
 
 // Smotrovaya
 L.marker([43.66426, 39.72854], { icon: photoIcon(IMG_VIEW1,'#b89040','Смотровая',50) })
@@ -349,19 +347,7 @@ cvs.addEventListener('mouseleave', () => {
   document.getElementById('ele-hover').textContent = 'наведите курсор';
 });
 
-// ── Legend ───────────────────────────────────────────────
-const legend = L.control({ position:'bottomright' });
-legend.onAdd = () => {
-  const d = L.DomUtil.create('div');
-  d.style.cssText = 'background:#fff;padding:8px 12px;border-radius:8px;font-size:11px;box-shadow:0 2px 8px rgba(0,0,0,.15);line-height:1.8';
-  d.innerHTML = `
-    <div style="font-weight:700;color:#252018;margin-bottom:4px">Маршрут 31.05.2026</div>
-    <div><span style="display:inline-block;width:24px;height:3px;background:#d85c0a;vertical-align:middle;margin-right:6px;border-radius:2px"></span>туда</div>
-    <div><span style="display:inline-block;width:24px;height:3px;background:#0e7a60;vertical-align:middle;margin-right:6px;border-radius:2px;border-top:3px dashed #0e7a60"></span>обратно</div>
-    <div style="margin-top:4px;color:#9a9288">~10 км · 1–1.5 часа · до 359 м</div>`;
-  return d;
-};
-legend.addTo(map);
+
 </script>
 </body>
 </html>
